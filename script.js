@@ -92,7 +92,6 @@ class MovingObject extends Entity {
 
         this.x += delta_time * this.sx;
         this.y += delta_time * this.sy;
-        console.log(this.x);
     }
 }
 
