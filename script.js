@@ -101,12 +101,29 @@ class Background extends Entity {
     constructor(image, x, y, scale) {
         super(image, x, y, scale);
     }
+
+    draw(ctx) {
+        if (this.imageLoaded) {
+            let canvasPos = this.getCanvasPos();
+            ctx.drawImage(this.image, canvasPos.x, canvasPos.y, this.width, this.height);
+        }
+    }
 }
 
 let startButton = new Button('images/red_start_button_normal.png', 'images/red_start_button_pressed.png', 0, 0, 10);
-let banana = new MovingObject('images/banana1.png', 0, 0, 0.1, 0.1, 7);
-let gorilla = new Background('images/gorilla4.png', 0, 0, 6);
-let button = new Background('images/red_start_button_pressed.png', 0, 0, 8);
+let blue_heart = new MovingObject('images/blue_heart.png', 0, 0, 0.1, 0.15, 5);
+let background0 = new Background('images/background0.png', 0, 0, 0.15);
+let background1 = new Background('images/background1.png', 0, 0, 0.25);
+let background2 = new Background('images/background2.png', 0, 0, 0.15);
+let background3 = new Background('images/background3.png', 0, 0, 0.15);
+let background4 = new Background('images/background4.png', 0, 0, 0.15);
+let background5 = new Background('images/background5.png', 0, 0, 0.7);
+let background6 = new Background('images/background6.png', 0, 0, 0.15);
+let background7 = new Background('images/background7.png', 0, 0, 0.2);
+let background8 = new Background('images/background8.png', 0, 0, 1);
+let background9 = new Background('images/background9.png', 0, 0, 0.25);
+let background10 = new Background('images/background10.png', 0, 0, 0.75);
+
 
 for (let e of ['mousedown', 'mouseup']) {
     canvas.addEventListener(e, event => {
@@ -126,12 +143,12 @@ function draw() {
 }
 
 function startGame() {
-    cenas = [gorilla, banana];
+    cenas = [background0, blue_heart];
 }
 
 let a = 1;
 function changeBackground() {
-    let backgroundImgs = [gorilla, button];
+    let backgroundImgs = [background0, background1, background2, background3, background4, background5, background6, background7, background8, background9, background10];
     if (a >= backgroundImgs.length) {
         a = 0;
     }
