@@ -79,15 +79,17 @@ class MovingObject extends Entity {
         this.sy = sy;
     }
 
-    update(delta_time) {
+    update(delta_time, changeImage) {
         let test_x = this.x + delta_time * this.sx;
         let test_y = this.y + delta_time * this.sy;
 
         if (test_x - this.width / 2 <= -ctx.canvas.width / 2 || test_x + this.width / 2 >= ctx.canvas.width / 2) {
             this.sx = -this.sx;
+            changeImage();
         }
         if (test_y - this.height / 2 <= -ctx.canvas.height / 2 || test_y + this.height / 2 >= ctx.canvas.height / 2) {
             this.sy = -this.sy;
+            changeImage()
         }
 
         this.x += delta_time * this.sx;
@@ -102,8 +104,9 @@ class Background extends Entity {
 }
 
 let startButton = new Button('images/red_start_button_normal.png', 'images/red_start_button_pressed.png', 0, 0, 10);
-let banana = new MovingObject('images/banana1.png', 0, 0, 0.1, 0.5, 7);
+let banana = new MovingObject('images/banana1.png', 0, 0, 0.1, 0.1, 7);
 let gorilla = new Background('images/gorilla4.png', 0, 0, 6);
+let button = new Background('images/red_start_button_pressed.png', 0, 0, 8);
 
 for (let e of ['mousedown', 'mouseup']) {
     canvas.addEventListener(e, event => {
@@ -126,13 +129,23 @@ function startGame() {
     cenas = [gorilla, banana];
 }
 
+let a = 1;
+function changeBackground() {
+    let backgroundImgs = [gorilla, button];
+    if (a >= backgroundImgs.length) {
+        a = 0;
+    }
+    cenas[0] = backgroundImgs[a];
+    a += 1;
+}
+
 function animate() {
     let currentDate = Date.now();
     let delta_time = currentDate - lastDate;
     lastDate = currentDate;
     for (let e of cenas) {
         if (e instanceof MovingObject) {
-            e.update(delta_time);
+            e.update(delta_time, changeBackground);
         }
         draw();
     }
