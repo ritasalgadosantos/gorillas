@@ -123,7 +123,7 @@ let background7 = new Background('images/background7.png', 0, 0, 0.2);
 let background8 = new Background('images/background8.png', 0, 0, 1);
 let background9 = new Background('images/background9.png', 0, 0, 0.25);
 let background10 = new Background('images/background10.png', 0, 0, 0.75);
-
+let background11 = new Background('images/background11.png', 0, 0, 0.15);
 
 for (let e of ['mousedown', 'mouseup']) {
     canvas.addEventListener(e, event => {
@@ -148,7 +148,7 @@ function startGame() {
 
 let a = 1;
 function changeBackground() {
-    let backgroundImgs = [background0, background1, background2, background3, background4, background5, background6, background7, background8, background9, background10];
+    let backgroundImgs = [background0, background1, background2, background3, background4, background5, background6, background7, background8, background9, background10, background11];
     if (a >= backgroundImgs.length) {
         a = 0;
     }
